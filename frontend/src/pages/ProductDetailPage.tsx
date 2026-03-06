@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { fetchProduct, NotFoundError } from "../api/products";
+import { useCart } from "../contexts/CartContext";
 import type { ProductResponse } from "../types/product";
 import styles from "./ProductDetailPage.module.css";
 
@@ -13,6 +14,7 @@ type FetchState =
 export default function ProductDetailPage() {
   const { id } = useParams<{ id: string }>();
   const [state, setState] = useState<FetchState>({ status: "loading" });
+  const { addToCart, toggleCart } = useCart();
 
   useEffect(() => {
     if (!id) return;
@@ -60,6 +62,15 @@ export default function ProductDetailPage() {
   }
 
   const product = state.data;
+  const handleAddToCart = () => {
+    addToCart({
+      id: product.id,
+      name: product.name ?? "Unnamed Product",
+      price: product.price,
+      imageUrl: product.imageUrl ?? undefined,
+    });
+    toggleCart();
+  };
 
   return (
     <div className={styles.page}>
@@ -89,6 +100,9 @@ export default function ProductDetailPage() {
           {product.description && (
             <p className={styles.description}>{product.description}</p>
           )}
+          <button type="button" className={styles.addButton} onClick={handleAddToCart}>
+            Add to Cart
+          </button>
           <p className={styles.date}>
             Listed on{" "}
             {new Date(product.createdAt).toLocaleDateString("en-US", {

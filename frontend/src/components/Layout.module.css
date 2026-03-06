@@ -1,4 +1,4 @@
-.layout {
+﻿.layout {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -19,6 +19,7 @@
   margin: 0 auto;
   display: flex;
   align-items: center;
+  justify-content: space-between;
   height: 64px;
 }
 
@@ -45,6 +46,16 @@
   letter-spacing: -0.02em;
 }
 
+.cartButton {
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  background: #fff;
+  color: var(--color-scarlet);
+  border-radius: 8px;
+  padding: 0.45rem 0.75rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
 .main {
   flex: 1;
   max-width: 1200px;
@@ -52,3 +63,129 @@
   margin: 0 auto;
   padding: 2rem 1.5rem;
 }
+
+.cartSidebar {
+  position: fixed;
+  top: 64px;
+  right: 0;
+  width: min(420px, 92vw);
+  height: calc(100vh - 64px);
+  background: #fff;
+  border-left: 1px solid #e4e4e7;
+  box-shadow: -8px 0 24px rgba(0, 0, 0, 0.12);
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  transform: translateX(100%);
+  transition: transform 0.2s ease;
+  z-index: 120;
+}
+
+.cartSidebarOpen {
+  transform: translateX(0);
+}
+
+.cartHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.cartTitle {
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.emptyState {
+  margin: 0;
+  color: var(--color-gray-mid);
+}
+
+.cartList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  overflow: auto;
+}
+
+.cartItem {
+  border: 1px solid #e4e4e7;
+  border-radius: 8px;
+  padding: 0.8rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.cartItemName {
+  margin: 0;
+  font-weight: 600;
+  color: var(--color-gray-dark);
+}
+
+.cartItemPrice {
+  margin: 0.2rem 0 0;
+  color: var(--color-gray-mid);
+  font-size: 0.9rem;
+}
+
+.cartControls {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.qtyButton {
+  border: 1px solid #d4d4d8;
+  background: #fff;
+  border-radius: 6px;
+  width: 30px;
+  height: 30px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.qtyValue {
+  min-width: 24px;
+  text-align: center;
+  font-weight: 600;
+}
+
+.textButton {
+  border: none;
+  background: transparent;
+  color: var(--color-scarlet);
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0;
+}
+
+.cartFooter {
+  margin-top: auto;
+  border-top: 1px solid #e4e4e7;
+  padding-top: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.total {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+
+.clearButton {
+  border: 1px solid #d4d4d8;
+  background: #fff;
+  border-radius: 8px;
+  padding: 0.45rem 0.7rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+

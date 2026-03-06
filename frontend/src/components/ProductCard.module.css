@@ -1,9 +1,8 @@
-.card {
+﻿.card {
   background: #fff;
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
-  text-decoration: none;
   color: inherit;
   transition:
     transform 0.15s,
@@ -15,6 +14,11 @@
 .card:hover {
   transform: translateY(-3px);
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+}
+
+.linkArea {
+  text-decoration: none;
+  color: inherit;
 }
 
 .imageWrapper {
@@ -67,3 +71,19 @@
   margin: 0.25rem 0 0;
   color: var(--color-gray-dark);
 }
+
+.actions {
+  padding: 0 1rem 1rem;
+}
+
+.addButton {
+  width: 100%;
+  border: none;
+  border-radius: 8px;
+  background: var(--color-scarlet);
+  color: #fff;
+  font-weight: 700;
+  padding: 0.55rem 0.75rem;
+  cursor: pointer;
+}
+
