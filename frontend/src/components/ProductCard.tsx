@@ -1,6 +1,6 @@
-﻿import { Link } from "react-router-dom";
-import { useCart } from "../contexts/CartContext";
+import { Link, useLocation } from "react-router-dom";
 import type { ProductResponse } from "../types/product";
+import { AddToCartButton } from "./AddToCartButton/AddToCartButton";
 import styles from "./ProductCard.module.css";
 
 interface ProductCardProps {
@@ -8,21 +8,15 @@ interface ProductCardProps {
 }
 
 export default function ProductCard({ product }: ProductCardProps) {
-  const { addToCart, toggleCart } = useCart();
-
-  const handleAddToCart = () => {
-    addToCart({
-      id: product.id,
-      name: product.name ?? "Unnamed Product",
-      price: product.price,
-      imageUrl: product.imageUrl ?? undefined,
-    });
-    toggleCart();
-  };
+  const location = useLocation();
 
   return (
     <article className={styles.card}>
-      <Link to={`/products/${product.id}`} className={styles.linkArea}>
+      <Link
+        to={`/products/${product.id}`}
+        state={{ from: `${location.pathname}${location.search}${location.hash}` }}
+        className={styles.linkArea}
+      >
         <div className={styles.imageWrapper}>
           {product.imageUrl ? (
             <img
@@ -43,11 +37,15 @@ export default function ProductCard({ product }: ProductCardProps) {
         </div>
       </Link>
       <div className={styles.actions}>
-        <button type="button" className={styles.addButton} onClick={handleAddToCart}>
-          Add to Cart
-        </button>
+        <AddToCartButton
+          product={{
+            id: product.id,
+            name: product.name ?? "Unnamed Product",
+            price: product.price,
+            imageUrl: product.imageUrl ?? undefined,
+          }}
+        />
       </div>
     </article>
   );
 }
-

@@ -1,10 +1,10 @@
-﻿import { Link, Outlet } from "react-router-dom";
-import { useCart } from "../contexts/CartContext";
+import { Link, Outlet } from "react-router-dom";
+import { useCart } from "../contexts/useCart";
+import { CartBadge } from "./CartBadge/CartBadge";
 import styles from "./Layout.module.css";
 
 export default function Layout() {
-  const { items, isOpen, itemCount, removeFromCart, updateQuantity, clearCart, toggleCart } =
-    useCart();
+  const { items, isOpen, removeFromCart, updateQuantity, clearCart, toggleCart } = useCart();
   const total = items.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
   return (
@@ -16,9 +16,12 @@ export default function Layout() {
             <h1 className={styles.title}>Buckeye Marketplace</h1>
           </Link>
 
-          <button type="button" className={styles.cartButton} onClick={toggleCart}>
-            Cart ({itemCount})
-          </button>
+          <div className={styles.headerActions}>
+            <Link to="/cart#checkout-form" className={styles.checkoutButton}>
+              Check Out
+            </Link>
+            <CartBadge onClick={toggleCart} />
+          </div>
         </div>
       </header>
       <main className={styles.main}>
@@ -34,7 +37,12 @@ export default function Layout() {
         </div>
 
         {items.length === 0 ? (
-          <p className={styles.emptyState}>Your cart is empty.</p>
+          <div className={styles.emptySection}>
+            <p className={styles.emptyState}>Your cart is empty.</p>
+            <Link to="/cart" className={styles.viewCartButton} onClick={toggleCart}>
+              Go to Cart Page
+            </Link>
+          </div>
         ) : (
           <>
             <ul className={styles.cartList}>
@@ -75,9 +83,14 @@ export default function Layout() {
 
             <div className={styles.cartFooter}>
               <p className={styles.total}>Total: ${total.toFixed(2)}</p>
-              <button type="button" className={styles.clearButton} onClick={clearCart}>
-                Clear Cart
-              </button>
+              <div className={styles.footerActions}>
+                <Link to="/cart" className={styles.viewCartButton} onClick={toggleCart}>
+                  Go to Cart Page
+                </Link>
+                <button type="button" className={styles.clearButton} onClick={clearCart}>
+                  Clear Cart
+                </button>
+              </div>
             </div>
           </>
         )}
@@ -85,4 +98,3 @@ export default function Layout() {
     </div>
   );
 }
-

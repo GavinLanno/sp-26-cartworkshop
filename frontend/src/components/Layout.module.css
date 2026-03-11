@@ -23,6 +23,12 @@
   height: 64px;
 }
 
+.headerActions {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
 .logo {
   display: flex;
   align-items: center;
@@ -46,14 +52,22 @@
   letter-spacing: -0.02em;
 }
 
-.cartButton {
+.checkoutButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   border: 1px solid rgba(255, 255, 255, 0.7);
   background: #fff;
   color: var(--color-scarlet);
   border-radius: 8px;
   padding: 0.45rem 0.75rem;
+  font-size: 0.9rem;
   font-weight: 700;
-  cursor: pointer;
+  text-decoration: none;
+}
+
+.checkoutButton:hover {
+  background: #fff4f4;
 }
 
 .main {
@@ -100,6 +114,12 @@
 .emptyState {
   margin: 0;
   color: var(--color-gray-mid);
+}
+
+.emptySection {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
 }
 
 .cartList {
@@ -172,6 +192,30 @@
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
+}
+
+.footerActions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.viewCartButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--color-scarlet);
+  background: #fff;
+  color: var(--color-scarlet);
+  border-radius: 8px;
+  padding: 0.45rem 0.7rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.viewCartButton:hover {
+  background: #fff4f4;
 }
 
 .total {

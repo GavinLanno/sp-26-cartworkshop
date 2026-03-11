@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 import { fetchProduct, NotFoundError } from "../api/products";
-import { useCart } from "../contexts/CartContext";
+import { useCart } from "../contexts/useCart";
 import type { ProductResponse } from "../types/product";
 import styles from "./ProductDetailPage.module.css";
 
@@ -11,8 +11,15 @@ type FetchState =
   | { status: "error"; message: string }
   | { status: "success"; data: ProductResponse };
 
+type ProductDetailLocationState = {
+  from?: string;
+};
+
 export default function ProductDetailPage() {
   const { id } = useParams<{ id: string }>();
+  const location = useLocation();
+  const locationState = location.state as ProductDetailLocationState | null;
+  const backDestination = locationState?.from ?? "/";
   const [state, setState] = useState<FetchState>({ status: "loading" });
   const { addToCart, toggleCart } = useCart();
 
@@ -42,16 +49,16 @@ export default function ProductDetailPage() {
   }, [id]);
 
   if (state.status === "loading") {
-    return <p className={styles.status}>Loading product…</p>;
+    return <p className={styles.status}>Loading product...</p>;
   }
 
   if (state.status === "not-found") {
     return (
       <div className={styles.notFound}>
         <h2>Product Not Found</h2>
-        <p>The product you're looking for doesn't exist.</p>
-        <Link to="/" className={styles.backLink}>
-          ← Back to Catalog
+        <p>The product you are looking for does not exist.</p>
+        <Link to={backDestination} className={styles.backLink}>
+          {"<- Back to Catalog"}
         </Link>
       </div>
     );
@@ -62,6 +69,7 @@ export default function ProductDetailPage() {
   }
 
   const product = state.data;
+
   const handleAddToCart = () => {
     addToCart({
       id: product.id,
@@ -74,8 +82,8 @@ export default function ProductDetailPage() {
 
   return (
     <div className={styles.page}>
-      <Link to="/" className={styles.backLink}>
-        ← Back to Catalog
+      <Link to={backDestination} className={styles.backLink}>
+        {"<- Back to Catalog"}
       </Link>
 
       <div className={styles.detail}>
@@ -88,7 +96,7 @@ export default function ProductDetailPage() {
             />
           ) : (
             <div className={styles.placeholder}>
-              <span>📦</span>
+              <span>BOX</span>
             </div>
           )}
         </div>
@@ -100,9 +108,20 @@ export default function ProductDetailPage() {
           {product.description && (
             <p className={styles.description}>{product.description}</p>
           )}
-          <button type="button" className={styles.addButton} onClick={handleAddToCart}>
-            Add to Cart
-          </button>
+
+          <div className={styles.actions}>
+            <button
+              type="button"
+              className={styles.addButton}
+              onClick={handleAddToCart}
+            >
+              Add to Cart
+            </button>
+            <Link to="/cart" className={styles.cartButton}>
+              Go to Cart
+            </Link>
+          </div>
+
           <p className={styles.date}>
             Listed on{" "}
             {new Date(product.createdAt).toLocaleDateString("en-US", {

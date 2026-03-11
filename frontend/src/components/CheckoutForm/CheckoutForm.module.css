@@ -1,0 +1,96 @@
+.checkoutSection {
+  border-top: 1px solid #e4e4e7;
+  padding-top: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+.heading {
+  margin: 0;
+  color: var(--color-gray-dark);
+  font-size: 1.35rem;
+}
+
+.summary {
+  margin: 0;
+  color: var(--color-gray-mid);
+  font-weight: 600;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.inlineFields {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.label {
+  color: var(--color-gray-dark);
+  font-weight: 600;
+}
+
+.input {
+  border: 1px solid #d4d4d8;
+  border-radius: 8px;
+  padding: 0.6rem 0.65rem;
+  font-size: 0.95rem;
+}
+
+.input:focus {
+  outline: 2px solid color-mix(in srgb, var(--color-scarlet) 30%, white);
+  border-color: var(--color-scarlet);
+}
+
+.input[aria-invalid="true"] {
+  border-color: #dc2626;
+}
+
+.error {
+  margin: 0;
+  color: #b91c1c;
+  font-size: 0.9rem;
+}
+
+.submitButton {
+  border: none;
+  background: var(--color-scarlet);
+  color: #fff;
+  border-radius: 8px;
+  padding: 0.7rem 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  width: fit-content;
+}
+
+.submitButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.successMessage {
+  margin: 0.2rem 0 0;
+  color: #166534;
+  font-weight: 600;
+}
+
+@media (max-width: 768px) {
+  .inlineFields {
+    grid-template-columns: 1fr;
+  }
+
+  .submitButton {
+    width: 100%;
+  }
+}

@@ -76,14 +76,3 @@
   padding: 0 1rem 1rem;
 }
 
-.addButton {
-  width: 100%;
-  border: none;
-  border-radius: 8px;
-  background: var(--color-scarlet);
-  color: #fff;
-  font-weight: 700;
-  padding: 0.55rem 0.75rem;
-  cursor: pointer;
-}
-

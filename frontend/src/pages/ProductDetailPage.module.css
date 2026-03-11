@@ -95,6 +95,27 @@
   cursor: pointer;
 }
 
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+.cartButton {
+  border: 1px solid var(--color-scarlet);
+  border-radius: 8px;
+  color: var(--color-scarlet);
+  background: #fff;
+  font-weight: 700;
+  padding: 0.55rem 0.9rem;
+  text-decoration: none;
+}
+
+.cartButton:hover {
+  background: #fff4f4;
+}
+
 .date {
   font-size: 0.8rem;
   color: #a1a1aa;
@@ -139,5 +160,15 @@
 
   .info {
     padding: 1.5rem;
+  }
+
+  .actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .cartButton,
+  .addButton {
+    text-align: center;
   }
 }

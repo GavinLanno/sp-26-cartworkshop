@@ -1,0 +1,26 @@
+.cartButton {
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  background: #fff;
+  color: var(--color-scarlet);
+  border-radius: 8px;
+  padding: 0.45rem 0.75rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.badge {
+  background: var(--color-scarlet);
+  color: #fff;
+  border-radius: 999px;
+  min-width: 1.35rem;
+  height: 1.35rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  line-height: 1;
+  padding: 0 0.3rem;
+}
